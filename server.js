@@ -23,7 +23,12 @@ mongoose.connect(process.env.MONGO_URI, {
 
 // Routes
 const authRoutes = require("./routes/auth");
+const projectRoutes = require("./routes/projects");
+const userRoutes = require("./routes/users");
+
 app.use("/auth", authRoutes);
+app.use("/api/projects", projectRoutes);
+app.use("/api/users", userRoutes);
 
 // 👉 Serve frontend (index.html & main.html)
 app.use(express.static(path.join(__dirname, "public")));
@@ -36,6 +41,15 @@ app.get("/", (req, res) => {
 // Protected page (main.html) – optional check
 app.get("/main", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "main.html"));
+});
+
+// Dashboard routes
+app.get("/dashboard", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "dashboard.html"));
+});
+
+app.get("/admin", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "admin.html"));
 });
 
 // Server

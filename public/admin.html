@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | ReConWorks</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <i class="fas fa-hard-hat"></i>
+          <span>ReConWorks</span>
+          <span class="admin-badge">Admin</span>
+        </div>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <ul>
+          <li class="nav-item active" data-section="overview">
+            <i class="fas fa-chart-line"></i>
+            <span>Dashboard</span>
+          </li>
+          <li class="nav-item" data-section="projects">
+            <i class="fas fa-project-diagram"></i>
+            <span>All Projects</span>
+          </li>
+          <li class="nav-item" data-section="users">
+            <i class="fas fa-users"></i>
+            <span>Users</span>
+          </li>
+          <li class="nav-item" data-section="analytics">
+            <i class="fas fa-chart-bar"></i>
+            <span>Analytics</span>
+          </li>
+          <li class="nav-item" data-section="settings">
+            <i class="fas fa-cog"></i>
+            <span>Settings</span>
+          </li>
+        </ul>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <div class="user-info">
+          <div class="user-avatar admin">
+            <i class="fas fa-user-shield"></i>
+          </div>
+          <div class="user-details">
+            <span class="user-name">Admin</span>
+            <span class="user-email">admin@reconworks.com</span>
+          </div>
+        </div>
+        <button class="logout-btn" onclick="handleLogout()">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Logout</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="dashboard-header">
+        <div class="header-left">
+          <button class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+          </button>
+          <h1 id="pageTitle">Admin Dashboard</h1>
+        </div>
+        <div class="header-right">
+          <button class="notification-btn">
+            <i class="fas fa-bell"></i>
+            <span class="notification-badge">5</span>
+          </button>
+          <a href="main.html" class="back-to-site-btn">
+            <i class="fas fa-home"></i>
+            <span>Back to Site</span>
+          </a>
+        </div>
+      </header>
+
+      <!-- Overview Section -->
+      <section id="overview" class="content-section active">
+        <div class="stats-grid">
+          <div class="stat-card primary">
+            <div class="stat-icon">
+              <i class="fas fa-project-diagram"></i>
+            </div>
+            <div class="stat-content">
+              <h3 id="totalProjects">0</h3>
+              <p>Total Projects</p>
+              <span class="stat-change positive">+12% this month</span>
+            </div>
+          </div>
+          <div class="stat-card success">
+            <div class="stat-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="stat-content">
+              <h3 id="totalUsers">0</h3>
+              <p>Active Users</p>
+              <span class="stat-change positive">+8% this month</span>
+            </div>
+          </div>
+          <div class="stat-card warning">
+            <div class="stat-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div class="stat-content">
+              <h3 id="pendingProjects">0</h3>
+              <p>Pending Projects</p>
+              <span class="stat-change negative">-5% this week</span>
+            </div>
+          </div>
+          <div class="stat-card info">
+            <div class="stat-icon">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="stat-content">
+              <h3 id="completedProjects">0</h3>
+              <p>Completed</p>
+              <span class="stat-change positive">+15% this month</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="dashboard-card">
+            <h3>Recent Projects</h3>
+            <div class="recent-projects-list" id="recentProjectsList">
+              <!-- Recent projects will be loaded here -->
+            </div>
+          </div>
+          
+          <div class="dashboard-card">
+            <h3>Quick Actions</h3>
+            <div class="quick-actions">
+              <button class="action-btn" onclick="showSection('projects')">
+                <i class="fas fa-eye"></i>
+                View All Projects
+              </button>
+              <button class="action-btn" onclick="showSection('users')">
+                <i class="fas fa-users"></i>
+                Manage Users
+              </button>
+              <button class="action-btn" onclick="exportData()">
+                <i class="fas fa-download"></i>
+                Export Data
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects" class="content-section">
+        <div class="section-header">
+          <h2>All Projects</h2>
+          <div class="filter-controls">
+            <select id="statusFilter">
+              <option value="">All Status</option>
+              <option value="pending">Pending</option>
+              <option value="in-progress">In Progress</option>
+              <option value="completed">Completed</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+            <select id="serviceFilter">
+              <option value="">All Services</option>
+              <option value="Residential Construction">Residential</option>
+              <option value="Commercial Construction">Commercial</option>
+              <option value="Home Remodeling">Remodeling</option>
+              <option value="Interior Design">Interior Design</option>
+            </select>
+          </div>
+        </div>
+        <div class="projects-table-container">
+          <table class="projects-table" id="projectsTable">
+            <thead>
+              <tr>
+                <th>Project</th>
+                <th>Client</th>
+                <th>Service</th>
+                <th>Status</th>
+                <th>Progress</th>
+                <th>Deadline</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="projectsTableBody">
+              <!-- Projects will be loaded here -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Users Section -->
+      <section id="users" class="content-section">
+        <div class="section-header">
+          <h2>User Management</h2>
+          <div class="filter-controls">
+            <input type="text" id="userSearch" placeholder="Search users...">
+            <select id="userStatusFilter">
+              <option value="">All Users</option>
+              <option value="true">Active</option>
+              <option value="false">Inactive</option>
+            </select>
+          </div>
+        </div>
+        <div class="users-grid" id="usersGrid">
+          <!-- Users will be loaded here -->
+        </div>
+      </section>
+
+      <!-- Analytics Section -->
+      <section id="analytics" class="content-section">
+        <div class="analytics-container">
+          <h2>Analytics & Reports</h2>
+          <div class="analytics-grid">
+            <div class="analytics-card">
+              <h3>Project Status Distribution</h3>
+              <div class="chart-placeholder">
+                <div class="chart-item">
+                  <div class="chart-bar pending" style="height: 60%"></div>
+                  <span>Pending</span>
+                </div>
+                <div class="chart-item">
+                  <div class="chart-bar progress" style="height: 80%"></div>
+                  <span>In Progress</span>
+                </div>
+                <div class="chart-item">
+                  <div class="chart-bar completed" style="height: 90%"></div>
+                  <span>Completed</span>
+                </div>
+                <div class="chart-item">
+                  <div class="chart-bar cancelled" style="height: 20%"></div>
+                  <span>Cancelled</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="analytics-card">
+              <h3>Monthly Performance</h3>
+              <div class="performance-metrics">
+                <div class="metric">
+                  <span class="metric-label">Projects Completed</span>
+                  <span class="metric-value">24</span>
+                </div>
+                <div class="metric">
+                  <span class="metric-label">Client Satisfaction</span>
+                  <span class="metric-value">98%</span>
+                </div>
+                <div class="metric">
+                  <span class="metric-label">On-Time Delivery</span>
+                  <span class="metric-value">92%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Settings Section -->
+      <section id="settings" class="content-section">
+        <div class="settings-container">
+          <h2>System Settings</h2>
+          <div class="settings-grid">
+            <div class="settings-card">
+              <h3>General Settings</h3>
+              <div class="setting-item">
+                <label>Site Maintenance Mode</label>
+                <label class="toggle">
+                  <input type="checkbox" id="maintenanceMode">
+                  <span class="slider"></span>
+                </label>
+              </div>
+              <div class="setting-item">
+                <label>Email Notifications</label>
+                <label class="toggle">
+                  <input type="checkbox" id="emailNotifications" checked>
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+            
+            <div class="settings-card">
+              <h3>Project Settings</h3>
+              <div class="setting-item">
+                <label>Auto-assign Projects</label>
+                <label class="toggle">
+                  <input type="checkbox" id="autoAssign">
+                  <span class="slider"></span>
+                </label>
+              </div>
+              <div class="setting-item">
+                <label>Default Project Duration (days)</label>
+                <input type="number" value="30" min="1" max="365">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Project Modal -->
+  <div id="projectModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Update Project</h3>
+        <button class="close-btn" onclick="closeProjectModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="updateProjectForm">
+          <input type="hidden" id="modalProjectId">
+          <div class="form-group">
+            <label for="modalStatus">Status</label>
+            <select id="modalStatus">
+              <option value="pending">Pending</option>
+              <option value="in-progress">In Progress</option>
+              <option value="completed">Completed</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="modalProgress">Progress (%)</label>
+            <input type="range" id="modalProgress" min="0" max="100" value="0">
+            <span id="progressValue">0%</span>
+          </div>
+          <div class="form-group">
+            <label for="modalNotes">Notes</label>
+            <textarea id="modalNotes" rows="3"></textarea>
+          </div>
+          <div class="modal-actions">
+            <button type="button" onclick="closeProjectModal()" class="btn-secondary">Cancel</button>
+            <button type="submit" class="btn-primary">Update Project</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay" class="loading-overlay">
+    <div class="loading-spinner">
+      <i class="fas fa-spinner fa-spin"></i>
+      <p>Loading...</p>
+    </div>
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>

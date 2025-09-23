@@ -22,6 +22,24 @@ const UserSchema = new mongoose.Schema({
     required: [true, "Password is required"],
     minlength: 6,
   },
+  role: {
+    type: String,
+    enum: ["user", "admin"],
+    default: "user",
+  },
+  profile: {
+    firstName: String,
+    lastName: String,
+    phone: String,
+    address: String,
+    city: String,
+    state: String,
+    zipCode: String,
+  },
+  isActive: {
+    type: Boolean,
+    default: true,
+  },
 }, { timestamps: true });
 
 // 🔒 Hash password before saving

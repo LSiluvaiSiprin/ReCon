@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard | ReConWorks</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <i class="fas fa-hard-hat"></i>
+          <span>ReConWorks</span>
+        </div>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <ul>
+          <li class="nav-item active" data-section="overview">
+            <i class="fas fa-chart-pie"></i>
+            <span>Overview</span>
+          </li>
+          <li class="nav-item" data-section="projects">
+            <i class="fas fa-project-diagram"></i>
+            <span>My Projects</span>
+          </li>
+          <li class="nav-item" data-section="new-project">
+            <i class="fas fa-plus-circle"></i>
+            <span>New Project</span>
+          </li>
+          <li class="nav-item" data-section="profile">
+            <i class="fas fa-user-circle"></i>
+            <span>Profile</span>
+          </li>
+        </ul>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <div class="user-info">
+          <div class="user-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="user-details">
+            <span class="user-name" id="userName">Loading...</span>
+            <span class="user-email" id="userEmail">Loading...</span>
+          </div>
+        </div>
+        <button class="logout-btn" onclick="handleLogout()">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Logout</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="dashboard-header">
+        <div class="header-left">
+          <button class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+          </button>
+          <h1 id="pageTitle">Dashboard Overview</h1>
+        </div>
+        <div class="header-right">
+          <button class="notification-btn">
+            <i class="fas fa-bell"></i>
+            <span class="notification-badge">3</span>
+          </button>
+          <a href="main.html" class="back-to-site-btn">
+            <i class="fas fa-home"></i>
+            <span>Back to Site</span>
+          </a>
+        </div>
+      </header>
+
+      <!-- Overview Section -->
+      <section id="overview" class="content-section active">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-project-diagram"></i>
+            </div>
+            <div class="stat-content">
+              <h3 id="totalProjects">0</h3>
+              <p>Total Projects</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div class="stat-content">
+              <h3 id="pendingProjects">0</h3>
+              <p>Pending Projects</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-spinner"></i>
+            </div>
+            <div class="stat-content">
+              <h3 id="inProgressProjects">0</h3>
+              <p>In Progress</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="stat-content">
+              <h3 id="completedProjects">0</h3>
+              <p>Completed</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="recent-projects">
+          <h2>Recent Projects</h2>
+          <div class="projects-list" id="recentProjectsList">
+            <!-- Projects will be loaded here -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects" class="content-section">
+        <div class="section-header">
+          <h2>My Projects</h2>
+          <div class="filter-controls">
+            <select id="statusFilter">
+              <option value="">All Status</option>
+              <option value="pending">Pending</option>
+              <option value="in-progress">In Progress</option>
+              <option value="completed">Completed</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+          </div>
+        </div>
+        <div class="projects-grid" id="projectsGrid">
+          <!-- Projects will be loaded here -->
+        </div>
+      </section>
+
+      <!-- New Project Section -->
+      <section id="new-project" class="content-section">
+        <div class="form-container">
+          <h2>Create New Project</h2>
+          <form id="newProjectForm" class="project-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="projectTitle">Project Title *</label>
+                <input type="text" id="projectTitle" required>
+              </div>
+              <div class="form-group">
+                <label for="projectService">Service Type *</label>
+                <select id="projectService" required>
+                  <option value="">Select Service</option>
+                  <option value="Residential Construction">Residential Construction</option>
+                  <option value="Commercial Construction">Commercial Construction</option>
+                  <option value="Home Remodeling">Home Remodeling</option>
+                  <option value="Interior Design">Interior Design</option>
+                  <option value="Structural Repairs">Structural Repairs</option>
+                  <option value="Industrial Project">Industrial Project</option>
+                  <option value="Infrastructure & Heavy Construction">Infrastructure & Heavy Construction</option>
+                  <option value="Renovation Project">Renovation Project</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="projectDescription">Project Description *</label>
+              <textarea id="projectDescription" rows="4" required></textarea>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="projectBudget">Budget (₹)</label>
+                <input type="number" id="projectBudget" min="0">
+              </div>
+              <div class="form-group">
+                <label for="projectDeadlineFrom">Deadline From</label>
+                <input type="date" id="projectDeadlineFrom">
+              </div>
+              <div class="form-group">
+                <label for="projectDeadlineTo">Deadline To</label>
+                <input type="date" id="projectDeadlineTo">
+              </div>
+            </div>
+            
+            <button type="submit" class="submit-btn">
+              <i class="fas fa-plus"></i>
+              Create Project
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- Profile Section -->
+      <section id="profile" class="content-section">
+        <div class="profile-container">
+          <h2>My Profile</h2>
+          <form id="profileForm" class="profile-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="profileFirstName">First Name</label>
+                <input type="text" id="profileFirstName">
+              </div>
+              <div class="form-group">
+                <label for="profileLastName">Last Name</label>
+                <input type="text" id="profileLastName">
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="profileEmail">Email</label>
+                <input type="email" id="profileEmail" readonly>
+              </div>
+              <div class="form-group">
+                <label for="profilePhone">Phone</label>
+                <input type="tel" id="profilePhone">
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="profileAddress">Address</label>
+              <textarea id="profileAddress" rows="3"></textarea>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="profileCity">City</label>
+                <input type="text" id="profileCity">
+              </div>
+              <div class="form-group">
+                <label for="profileState">State</label>
+                <input type="text" id="profileState">
+              </div>
+              <div class="form-group">
+                <label for="profileZip">ZIP Code</label>
+                <input type="text" id="profileZip">
+              </div>
+            </div>
+            
+            <button type="submit" class="submit-btn">
+              <i class="fas fa-save"></i>
+              Update Profile
+            </button>
+          </form>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay" class="loading-overlay">
+    <div class="loading-spinner">
+      <i class="fas fa-spinner fa-spin"></i>
+      <p>Loading...</p>
+    </div>
+  </div>
+
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

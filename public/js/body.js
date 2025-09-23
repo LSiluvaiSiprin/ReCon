@@ -133,15 +133,18 @@ class WebsiteManager {
   updateAuthUI(isLoggedIn, user = null) {
     const loginBtn = document.getElementById("loginBtn");
     const logoutBtn = document.getElementById("logoutBtn");
+    const dashboardLink = document.getElementById("dashboardLink");
 
     if (isLoggedIn && user) {
       if (loginBtn) loginBtn.style.display = "none";
+      if (dashboardLink) dashboardLink.style.display = "inline-block";
       if (logoutBtn) {
         logoutBtn.style.display = "inline-block";
         logoutBtn.textContent = `Logout (${user.email})`;
       }
     } else {
       if (loginBtn) loginBtn.style.display = "inline-block";
+      if (dashboardLink) dashboardLink.style.display = "none";
       if (logoutBtn) logoutBtn.style.display = "none";
     }
   }
@@ -159,6 +162,26 @@ class WebsiteManager {
       setTimeout(() => {
         window.location.href = "index.html";
       }, 1500);
+    }
+  }
+
+  // Add method to redirect to dashboard
+  redirectToDashboard() {
+    const userSession = localStorage.getItem("userSession");
+    if (userSession) {
+      try {
+        const session = JSON.parse(userSession);
+        if (session.isLoggedIn && session.user) {
+          // Check if user is admin
+          if (session.user.role === 'admin') {
+            window.location.href = "admin.html";
+          } else {
+            window.location.href = "dashboard.html";
+          }
+        }
+      } catch (error) {
+        console.error('Session parsing error:', error);
+      }
     }
   }
 
@@ -490,3 +513,26 @@ scrollToTopBtn.addEventListener('mouseenter', () => {
 scrollToTopBtn.addEventListener('mouseleave', () => {
   scrollToTopBtn.style.transform = 'translateY(0) scale(1)';
 });
+
+// Global function for dashboard redirect
+function redirectToDashboard() {
+  const userSession = localStorage.getItem("userSession");
+  if (userSession) {
+    try {
+      const session = JSON.parse(userSession);
+      if (session.isLoggedIn && session.user) {
+        // Check if user is admin
+        if (session.user.role === 'admin') {
+          window.location.href = "admin.html";
+        } else {
+          window.location.href = "dashboard.html";
+        }
+      }
+    } catch (error) {
+      console.error('Session parsing error:', error);
+      window.location.href = "index.html";
+    }
+  } else {
+    window.location.href = "index.html";
+  }
+}
