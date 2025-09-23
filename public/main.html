@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | ReConWorks</title>
+    <link rel="stylesheet" href="css/body.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Background Video -->
+    <video autoplay muted loop playsinline class="bg-video">
+      <source src="image/3668061927-preview.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+
+    <!-- Overlay -->
+    <div class="overlay"></div>
+
+    <!-- Navigation Bar -->
+    <nav id="navbar">
+      <div class="logo"><a href="#">ReConWorks</a></div>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="nav-links" id="nav-links">
+        <div class="menu-items">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#project" onclick="project()">Project</a>
+          <a href="#services" >Services</a>
+          <a href="#contact" onclick="contact()">Contact</a>
+        </div>
+        <a href="index.html"
+          ><button class="login" id="loginBtn">Login / Sign Up</button></a
+        >
+        <button class="logoutBtn" id="logoutBtn" style="display: none">Logout</button>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <h1>Building Dreams, Crafting Excellence</h1>
+      <p>Expert Construction & Remodeling Solutions Tailored to Your Vision</p>
+      <a href="#contact" class="btn">Get Started</a>
+    </section>
+
+    <!-- About Me Section -->>
+    <section id="about" class="about-section">
+      <div class="about-container">
+        <!-- Image -->
+        <div class="about-image">
+          <img src="image/about.gif" alt="About Our Construction Company" />
+        </div>
+        <!-- Text Content -->
+        <div class="about-content">
+          <h2>About Our Company</h2>
+          <p>
+            ReConWorks has been delivering high-quality construction and
+            remodeling services for over 20 years. Our team of skilled
+            professionals is committed to bringing your vision to life with
+            precision, safety, and efficiency.
+          </p>
+          <p>
+            From residential projects to commercial developments, we provide
+            comprehensive solutions including design, planning, and construction
+            management. Our mission is to build spaces that are not only
+            functional but also visually stunning.
+          </p>
+          <a href="#contact" class="btn">Get a Quote</a>
+        </div>
+      </div>
+    </section>
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+      <h2 class="services-title">Our Core Services</h2>
+      <p class="services-subtitle">
+        Comprehensive construction and remodeling solutions tailored to your
+        needs, delivered with unmatched quality and professionalism.
+      </p>
+
+      <div class="services-grid">
+        <!-- Service 1 -->
+        <div class="service-card">
+          <img
+            src="image/Residential_Construction.jpg"
+            alt="Residential Construction"
+          />
+          <div class="service-info">
+            <h3>Residential Construction</h3>
+            <p>High-quality homes built with precision and care.</p>
+          </div>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="service-card">
+          <img src="image/Commercial_Building.jpg" alt="Commercial Building" />
+          <div class="service-info">
+            <h3>Commercial Building</h3>
+            <p>Modern office and retail spaces designed for functionality.</p>
+          </div>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="service-card">
+          <img src="image/Remodeling.webp" alt="Interior Remodeling" />
+          <div class="service-info">
+            <h3>Interior Remodeling</h3>
+            <p>Redesigning and updating interior spaces.</p>
+          </div>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="service-card">
+          <img src="image/Industrial_Project.jpeg" alt="Industrial Project" />
+          <div class="service-info">
+            <h3>Industrial Project</h3>
+            <p>Durable industrial spaces built for efficiency and safety.</p>
+          </div>
+        </div>
+
+        <!-- Service 5 -->
+        <div class="service-card">
+          <img src="image/hevy.jpg" alt="Infrastructure & Heavy Construction" />
+          <div class="service-info">
+            <h3>Infrastructure & Heavy Construction</h3>
+            <p>
+              Building essential public structures and large-scale projects.
+            </p>
+          </div>
+        </div>
+
+        <!-- Service 6 -->
+        <div class="service-card">
+          <img src="image/tadilat-nedir.jpg" alt="Renovation Project" />
+          <div class="service-info">
+            <h3>Renovation Project</h3>
+            <p>Updating or improving a building or space.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fp-section"id="project">
+      <h2>Featured Projects</h2>
+      <p>
+        Showcasing our commitment to excellence through successful projects that
+        transform spaces and exceed client expectations.
+      </p>
+
+      <div class="fp-grid">
+        <!-- Project 1 -->
+        <div class="fp-card">
+          <img
+            src="https://cdn.pixabay.com/photo/2016/11/29/03/53/home-1867187_1280.jpg"
+            alt="Luxury Villa Renovation"
+          />
+          <div class="fp-content">
+            <span class="fp-tag">Residential</span>
+            <h3>Luxury Villa Renovation</h3>
+            <p>Complete modern transformation with smart interiors.</p>
+            <div class="fp-meta">
+              <span>Chennai</span>
+              <span>8 months</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="fp-card">
+          <img src="image/fp.webp" alt="Corporate Office Build" />
+          <div class="fp-content">
+            <span class="fp-tag">Commercial</span>
+            <h3>Corporate Office Build</h3>
+            <p>10,000 sq.ft eco-friendly office space.</p>
+            <div class="fp-meta">
+              <span>Bangalore</span>
+              <span>12 months</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="fp-card">
+          <img src="image/fb2.jpg" alt="Residential Apartment Complex" />
+          <div class="fp-content">
+            <span class="fp-tag">Residential</span>
+            <h3>Residential Apartment Complex</h3>
+            <p>50+ premium apartments delivered ahead of schedule.</p>
+            <div class="fp-meta">
+              <span>Hyderabad</span>
+              <span>18 months</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="fp-card">
+          <img src="image/fb3.png" alt="Kitchen & Bath Remodeling" />
+          <div class="fp-content">
+            <span class="fp-tag">Renovation</span>
+            <h3>Kitchen & Bath Remodeling</h3>
+            <p>Elegant modular kitchens and spa-inspired bathrooms.</p>
+            <div class="fp-meta">
+              <span>Delhi</span>
+              <span>3 months</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="fp-btn">View All Projects</button>
+    </section>
+
+    <section class="why-choose">
+      <h2>Why Choose Us?</h2>
+      <p>
+        We combine experience, reliability, and innovation to deliver
+        exceptional construction results that stand the test of time.
+      </p>
+
+      <div class="choose-grid">
+        <div class="choose-card">
+          <i class="fa-solid fa-helmet-safety"></i>
+          <h3>20+ Years of Experience</h3>
+          <p>
+            Proven expertise in construction and remodeling across diverse
+            project types.
+          </p>
+        </div>
+        <div class="choose-card">
+          <i class="fa-solid fa-clock"></i>
+          <h3>On-Time, On-Budget Delivery</h3>
+          <p>
+            We pride ourselves on meeting deadlines and staying within your
+            budget.
+          </p>
+        </div>
+        <div class="choose-card">
+          <i class="fa-solid fa-user-tie"></i>
+          <h3>Certified Engineers & Skilled Workforce</h3>
+          <p>
+            Licensed professionals with specialized training and certifications.
+          </p>
+        </div>
+        <div class="choose-card">
+          <i class="fa-solid fa-screwdriver-wrench"></i>
+          <h3>Modern Equipment & Sustainable Materials</h3>
+          <p>State-of-the-art tools and eco-friendly construction practices.</p>
+        </div>
+        <div class="choose-card">
+          <i class="fa-solid fa-shield-halved"></i>
+          <h3>100% Client Satisfaction Guarantee</h3>
+          <p>
+            Your satisfaction is our priority, backed by our quality assurance.
+          </p>
+        </div>
+      </div>
+
+      <div class="cta-box">
+        <h3>Ready to Start Your Project?</h3>
+        <p>
+          Let's discuss your construction needs and bring your vision to life.
+        </p>
+        <button class="btn" onclick="openModal()">
+          Schedule a Consultation
+        </button>
+      </div>
+    </section>
+
+    <div id="consultationModal" class="modal">
+      <div class="modal-content">
+        <span onclick="closeModal()" class="close">&times;</span>
+        <h2>Book a Consultation</h2>
+        <form>
+          <input type="text" placeholder="Your Name" required />
+          <input type="email" placeholder="Your Email" required />
+          <textarea placeholder="Your Message"></textarea>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+
+    <section class="testimonials-section">
+      <div class="container">
+        <h2>What Our Clients Say</h2>
+        <p>
+          Don't just take our word for it. Here's what our satisfied clients
+          have to say about their experience working with us.
+        </p>
+
+        <div class="testimonials-grid">
+          <!-- Testimonial 1 -->
+          <div class="testimonial-card">
+            <div class="quote-icon">“</div>
+            <div class="stars">★★★★★</div>
+            <p>
+              "Our office was delivered ahead of schedule and with flawless
+              design. The team was professional throughout the entire process,
+              and the quality exceeded our expectations. Highly recommend!"
+            </p>
+            <div class="client-info">
+              <img src="image/karthick.avif" alt="Mr. Karthik" />
+              <div>
+                <h4>Mr. Karthik</h4>
+                <span>Tech Startup CEO, Bangalore</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 2 -->
+          <div class="testimonial-card">
+            <div class="quote-icon">“</div>
+            <div class="stars">★★★★★</div>
+            <p>
+              "They remodeled my kitchen and bathroom, and I couldn't be
+              happier. Professional, transparent, and the attention to detail
+              was incredible. The project was completed exactly as promised."
+            </p>
+            <div class="client-info">
+              <img src="image/priya.jpeg" alt="Mrs. Priya" />
+              <div>
+                <h4>Mrs. Priya</h4>
+                <span>Interior Designer, Chennai</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 3 -->
+          <div class="testimonial-card">
+            <div class="quote-icon">“</div>
+            <div class="stars">★★★★★</div>
+            <p>
+              "Working with BuildPro on our apartment complex was seamless.
+              Their project management and quality control are top-notch. Every
+              unit was delivered to perfection."
+            </p>
+            <div class="client-info">
+              <img src="image/rajesh.webp" alt="Mr. Rajesh" />
+              <div>
+                <h4>Mr. Rajesh</h4>
+                <span>Real Estate Developer, Hyderabad</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stats">
+          <span>500+ Projects</span>
+          <span>200+ Clients</span>
+          <span>20+ Cities</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="get-in-touch-section">
+      <div class="container">
+        <div class="heading-container">
+          <h2>Get in Touch</h2>
+          <p>
+            Ready to start your construction or remodeling project? Contact us
+            today for a free consultation and detailed quote.
+          </p>
+        </div>
+        <div class="content-wrapper">
+          <div class="left-column">
+            <h3>Let's Discuss Your Project</h3>
+            <div class="contact-card" id="contact">
+              <i class="fas fa-map-marker-alt"></i>
+              <h4>Our Office</h4>
+              <p>
+                No. 482, Tiruchendur Road, Thoothukudi - 628 003, Tamil Nadu,
+                India
+              </p>
+            </div>
+            <div class="contact-card">
+              <i class="fas fa-phone"></i>
+              <h4>Call Us</h4>
+              <p>+91 97902 87313<br />Mon - Sat: 9:00 AM - 7:00 PM</p>
+            </div>
+            <div class="contact-card">
+              <i class="fas fa-envelope"></i>
+              <h4>Email Us</h4>
+              <p>siluvaisiprin2604@gmail.com<br />We reply within 24 hours.</p>
+            </div>
+            <div class="contact-card">
+              <i class="fas fa-clock"></i>
+              <h4>Business Hours</h4>
+              <p>Monday - Saturday<br />9:00 AM - 7:00 PM</p>
+            </div>
+            <div class="map-placeholder">
+              <img
+                width="24"
+                height="24"
+                src="https://img.icons8.com/material-sharp/24/place-marker.png"
+                alt="place-marker"
+              />
+              <p>
+                Interactive Map Coming Soon<br />Find us at our office location
+              </p>
+            </div>
+          </div>
+          <div class="right-column">
+            <h3>Request a Consultation</h3>
+            <form>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="fullName">First Name <span>*</span></label>
+                  <input type="text" id="fullName" placeholder="First Name" />
+                </div>
+                <div class="form-group">
+                  <label for="phoneNumber">Last Name <span>*</span></label>
+                  <input type="tel" id="phoneNumber" placeholder="Last Name" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="phoneNumber">Phone Number <span>*</span></label>
+                <input
+                  type="tel"
+                  id="phoneNumber"
+                  placeholder="+91 98765 43210"
+                />
+              </div>
+              <div class="form-group">
+                <label for="emailAddress">Email Address <span>*</span></label>
+                <input
+                  type="email"
+                  id="emailAddress"
+                  placeholder="your.email@example.com"
+                />
+              </div>
+              <div class="form-group">
+                <label for="service"
+                  >Service Interested In <span>*</span></label
+                >
+                <select id="service">
+                  <option>Select a service</option>
+                  <option>Residential Construction</option>
+                  <option>Commercial Construction</option>
+                  <option>Home Remodeling</option>
+                  <option>Interior Design</option>
+                  <option>Structural Repairs</option>
+                </select>
+              </div>
+
+              <div class="date-range">
+                <label class="heading">Dead Lines <span>*</span></label>
+                <div class="date-inputs">
+                  <span>From</span>
+                  <input type="date" id="deadlinesFrom" />
+                  <span>To</span>
+                  <input type="date" id="deadlinesTo" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="projectDetails">Project Details</label>
+                <textarea
+                  id="projectDetails"
+                  rows="4"
+                  placeholder="Tell us about your project requirements, timeline, and budget..."
+                ></textarea>
+              </div>
+              <button type="submit" class="submit-button">
+                Send Message
+                <i class="fas fa-paper-plane"></i>
+              </button>
+              <p class="required-note">
+                * Required fields. We'll get back to you within 24 hours.
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ✅ New Footer -->
+    <footer class="buildpro-footer">
+      <div class="footer-container">
+        <div class="footer-column">
+          <div class="brand-logo">
+            <img src="image/log.jpg" alt="ReConWorks" />
+            <span>ReConWorks</span>
+          </div>
+          <p>
+            Building dreams and strengthening foundations with over 20 years of
+            trusted construction and remodeling expertise across India.
+          </p>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h4>Our Services</h4>
+          <ul class="footer-links">
+            <li>Residential Construction</li>
+            <li>Commercial Construction</li>
+            <li>Home Remodeling</li>
+            <li>Interior Design</li>
+            <li>Structural Repairs</li>
+            <li>Project Management</li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Service Areas</h4>
+          <ul class="footer-links">
+            <li>Bangalore</li>
+            <li>Chennai</li>
+            <li>Hyderabad</li>
+            <li>Delhi</li>
+            <li>Mumbai</li>
+            <li>Pune</li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Contact Information</h4>
+          <div class="contact-info">
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <p>
+                123 Construction Avenue<br />Business District, Bangalore<br />Karnataka
+                560001
+              </p>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-phone-alt"></i>
+              <p>+91 98765-43210<br />24/7 Emergency Support</p>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <p>
+                info@buildproconstruction.com<br />Quick response guaranteed
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2024 BuildPro Construction. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <script src="js/body.js"></script>
+  </body>
+</html>
