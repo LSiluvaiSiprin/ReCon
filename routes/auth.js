@@ -20,18 +20,34 @@ router.post("/signup", async (req, res) => {
 // LOGIN
 router.post("/login", async (req, res) => {
   try {
-    const a = req;
-    
     const { email, password } = req.body;
 
+    // Validation
+    if (!email || !password) {
+      return res.status(400).json({ msg: "Email and password are required" });
+    }
+
     const user = await User.findOne({ email });
-    console.log(user,"jency")
     if (!user) return res.status(400).json({ msg: "User not found" });
+
+    // Check if user is active
+    if (!user.isActive) {
+      return res.status(400).json({ msg: "Account is deactivated. Please contact admin." });
+    }
 
     const isMatch = await user.matchPassword(password);
     if (!isMatch) return res.status(400).json({ msg: "Invalid password" });
 
-    res.status(200).json({ msg: "Login successful", user: { id: user._id, email: user.email ,user1:user} });
+    res.status(200).json({ 
+      msg: "Login successful", 
+      user: { 
+        id: user._id, 
+        email: user.email,
+        username: user.username,
+        role: user.role,
+        profile: user.profile
+      } 
+    });
   } catch (err) {
     res.status(500).json({ msg: "Server error", error: err.message });
   }

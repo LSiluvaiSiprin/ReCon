@@ -125,6 +125,30 @@ body, html {
   width: 100%;
 }
 
+/* Dashboard link styling */
+#dashboardLink {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white !important;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-right: 12px;
+}
+
+#dashboardLink:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+}
+
+#dashboardLink::after {
+  display: none;
+}
+
 /* ✅ Buttons */
 .login,
 .logoutBtn {
@@ -136,6 +160,9 @@ body, html {
   transition: all 0.3s ease;
   text-decoration: none;
   display: inline-block;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 /* Login */

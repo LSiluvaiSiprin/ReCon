@@ -25,6 +25,13 @@ class UserDashboard {
         window.location.href = 'index.html';
         return;
       }
+      
+      // Check if user is admin (redirect to admin panel)
+      if (session.user.role === 'admin') {
+        window.location.href = 'admin.html';
+        return;
+      }
+      
       this.currentUser = session.user;
       this.updateUserInfo();
     } catch (error) {
@@ -54,6 +61,16 @@ class UserDashboard {
     // Mobile menu
     document.querySelector('.mobile-menu-btn').addEventListener('click', () => {
       document.querySelector('.sidebar').classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      const sidebar = document.querySelector('.sidebar');
+      const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+      
+      if (!sidebar.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+        sidebar.classList.remove('active');
+      }
     });
 
     // Forms

@@ -668,6 +668,23 @@ input[type="range"] {
 
 /* Responsive Design for Admin */
 @media (max-width: 1024px) {
+  .sidebar {
+    transform: translateX(-100%);
+    z-index: 2000;
+  }
+  
+  .sidebar.active {
+    transform: translateX(0);
+  }
+  
+  .main-content {
+    margin-left: 0;
+  }
+  
+  .mobile-menu-btn {
+    display: block;
+  }
+  
   .dashboard-grid {
     grid-template-columns: 1fr;
   }

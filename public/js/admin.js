@@ -23,14 +23,31 @@ class AdminDashboard {
     try {
       const session = JSON.parse(userSession);
       if (!session.isLoggedIn || session.user.role !== 'admin') {
-        window.location.href = 'index.html';
+        // If user is logged in but not admin, redirect to user dashboard
+        if (session.isLoggedIn && session.user.role === 'user') {
+          window.location.href = 'dashboard.html';
+        } else {
+          window.location.href = 'index.html';
+        }
         return;
       }
+      
+      // Update admin info in UI
+      this.updateAdminInfo(session.user);
     } catch (error) {
       console.error('Session error:', error);
       localStorage.removeItem('userSession');
       window.location.href = 'index.html';
     }
+  }
+
+  updateAdminInfo(user) {
+    // Update admin name and email in sidebar
+    const userNameEl = document.querySelector('.user-name');
+    const userEmailEl = document.querySelector('.user-email');
+    
+    if (userNameEl) userNameEl.textContent = user.username || 'Admin';
+    if (userEmailEl) userEmailEl.textContent = user.email || 'admin@reconworks.com';
   }
 
   setupEventListeners() {
@@ -46,6 +63,16 @@ class AdminDashboard {
     // Mobile menu
     document.querySelector('.mobile-menu-btn').addEventListener('click', () => {
       document.querySelector('.sidebar').classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      const sidebar = document.querySelector('.sidebar');
+      const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+      
+      if (!sidebar.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+        sidebar.classList.remove('active');
+      }
     });
 
     // Filters
