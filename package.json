@@ -1,20 +1,32 @@
 {
-  "name": "constraction",
-  "version": "1.0.0",
-  "description": "",
+  "name": "reconworks-monorepo",
+  "version": "2.0.0",
+  "description": "ReConWorks - Construction Management Platform (User App + Admin Dashboard)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:user": "node apps/user/server.js",
+    "start:admin": "node apps/admin/server.js",
+    "start": "concurrently \"npm run start:user\" \"npm run start:admin\"",
+    "dev:user": "nodemon apps/user/server.js",
+    "dev:admin": "nodemon apps/admin/server.js",
+    "dev": "concurrently \"npm run dev:user\" \"npm run dev:admin\"",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "echo \"Build completed\""
   },
-  "keywords": [],
+  "keywords": ["construction", "management", "admin", "dashboard"],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@supabase/supabase-js": "^2.39.0",
     "bcryptjs": "^3.0.2",
     "body-parser": "^2.2.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
-    "mongoose": "^8.18.0"
+    "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.0.2"
   }
 }
