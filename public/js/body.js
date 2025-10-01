@@ -108,19 +108,8 @@ class WebsiteManager {
     const loginBtn = document.getElementById("loginBtn");
     const logoutBtn = document.getElementById("logoutBtn");
 
-    // Check login status from localStorage
-    const userSession = localStorage.getItem("userSession");
-    if (userSession) {
-      try {
-        const session = JSON.parse(userSession);
-        if (session.isLoggedIn) {
-          this.updateAuthUI(true, session.user);
-        }
-      } catch (error) {
-        console.error('Session parsing error:', error);
-        localStorage.removeItem("userSession");
-      }
-    }
+    // Check authentication and update UI
+    this.checkAuthAndUpdateUI();
 
     // Logout functionality
     if (logoutBtn) {
@@ -139,8 +128,14 @@ class WebsiteManager {
       if (loginBtn) loginBtn.style.display = "none";
       if (dashboardLink) dashboardLink.style.display = "inline-block";
       if (logoutBtn) {
+        // Set dashboard link text and action based on role
+        if (user.role === 'admin') {
+          dashboardLink.innerHTML = '<i class="fas fa-shield-alt"></i> Admin Panel';
+        } else {
+          dashboardLink.innerHTML = '<i class="fas fa-tachometer-alt"></i> Dashboard';
+        }
         logoutBtn.style.display = "inline-block";
-        logoutBtn.textContent = `Logout (${user.email})`;
+        logoutBtn.innerHTML = `<i class="fas fa-sign-out-alt"></i> Logout (${user.username || user.email})`;
       }
     } else {
       if (loginBtn) loginBtn.style.display = "inline-block";
@@ -181,6 +176,36 @@ class WebsiteManager {
         }
       } catch (error) {
         console.error('Session parsing error:', error);
+        localStorage.removeItem('userSession');
+        window.location.href = "index.html";
+      }
+    }
+  }
+
+  // Check authentication and update UI
+  checkAuthAndUpdateUI() {
+    const userSession = localStorage.getItem("userSession");
+    if (userSession) {
+      try {
+        const session = JSON.parse(userSession);
+        if (session.isLoggedIn && session.user) {
+          this.updateAuthUI(true, session.user);
+          
+          // Update dashboard link based on role
+          const dashboardLink = document.getElementById("dashboardLink");
+          if (dashboardLink) {
+            if (session.user.role === 'admin') {
+              dashboardLink.textContent = 'Admin Panel';
+              dashboardLink.onclick = () => window.location.href = 'admin.html';
+            } else {
+              dashboardLink.textContent = 'Dashboard';
+              dashboardLink.onclick = () => window.location.href = 'dashboard.html';
+            }
+          }
+        }
+      } catch (error) {
+        console.error('Session parsing error:', error);
+        localStorage.removeItem('userSession');
       }
     }
   }

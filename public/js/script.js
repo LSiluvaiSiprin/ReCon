@@ -178,7 +178,12 @@ class AuthManager {
 
         // Redirect after short delay
         setTimeout(() => {
-          window.location.href = "main.html";
+          // Check user role and redirect accordingly
+          if (data.user.role === 'admin') {
+            window.location.href = "admin.html";
+          } else {
+            window.location.href = "main.html";
+          }
         }, 1500);
       } else {
         this.showMessage('login-message', data.msg || 'Login failed. Please try again.', 'error');

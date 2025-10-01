@@ -19,18 +19,20 @@ class UserDashboard {
     return;
   }
 
-  try {
-    const session = JSON.parse(userSession);
-    if (!session.isLoggedIn || session.user.role !== 'admin') {
+    try {
+      const session = JSON.parse(userSession);
+      if (!session.isLoggedIn) {
+        window.location.href = 'index.html';
+        return;
+      }
+      this.currentUser = session.user;
+      this.updateUserInfo();
+    } catch (error) {
+      console.error('Session error:', error);
+      localStorage.removeItem('userSession');
       window.location.href = 'index.html';
-      return;
     }
-  } catch (error) {
-    console.error('Session error:', error);
-    localStorage.removeItem('userSession');
-    window.location.href = 'index.html';
   }
-}
 
   updateUserInfo() {
     if (this.currentUser) {
@@ -52,6 +54,16 @@ class UserDashboard {
     // Mobile menu
     document.querySelector('.mobile-menu-btn').addEventListener('click', () => {
       document.querySelector('.sidebar').classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      const sidebar = document.querySelector('.sidebar');
+      const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+      
+      if (!sidebar.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+        sidebar.classList.remove('active');
+      }
     });
 
     // Forms
