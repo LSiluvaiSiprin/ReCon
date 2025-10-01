@@ -12,27 +12,25 @@ class UserDashboard {
     await this.loadDashboardData();
   }
 
-  async checkAuth() {
-    const userSession = localStorage.getItem('userSession');
-    if (!userSession) {
+  checkAdminAuth() {
+  const userSession = localStorage.getItem('userSession');
+  if (!userSession) {
+    window.location.href = 'index.html';
+    return;
+  }
+
+  try {
+    const session = JSON.parse(userSession);
+    if (!session.isLoggedIn || session.user.role !== 'admin') {
       window.location.href = 'index.html';
       return;
     }
-
-    try {
-      const session = JSON.parse(userSession);
-      if (!session.isLoggedIn) {
-        window.location.href = 'index.html';
-        return;
-      }
-      this.currentUser = session.user;
-      this.updateUserInfo();
-    } catch (error) {
-      console.error('Session error:', error);
-      localStorage.removeItem('userSession');
-      window.location.href = 'index.html';
-    }
+  } catch (error) {
+    console.error('Session error:', error);
+    localStorage.removeItem('userSession');
+    window.location.href = 'index.html';
   }
+}
 
   updateUserInfo() {
     if (this.currentUser) {
